@@ -89,7 +89,7 @@ class Telebot extends Command
                     $this->sendMessage($chatId, 'Hello! This is your Telegram bot.');
                 }
 
-                if (stripos($text, "/make-quote") !== false) {
+                if (stripos($text, "/quote") !== false) {
                     $this->sendMessage($chatId, 'Processing...');
                     $saved = $this->storeQuote($message);
                     $message = "Oops ! something went wrong with server bot !";
@@ -205,7 +205,7 @@ class Telebot extends Command
 
         try {
             $q = new Quote;
-            $q->quote = explode('/make-quote', $message['text'])[1] ?? $message['text'];
+            $q->quote = explode('/quote', $message['text'])[1] ?? $message['text'];
             $q->username = $message['chat']['username'];
             $q->json = json_encode($message);
             $q->save();
